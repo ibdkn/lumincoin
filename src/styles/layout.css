@@ -45,6 +45,7 @@
                     font-weight: 400;
                     font-size: 14px;
                     color: var(--font-color);
+                    cursor: pointer;
 
                     a {
                         display: flex;
@@ -59,6 +60,14 @@
                         svg path {
                             fill: var(--button-fc);
                         }
+
+                        &:hover {
+                            background-color: var(--accent);
+                        }
+                    }
+
+                    &:hover {
+                        background-color: rgba(11, 140, 233, 0.3);
                     }
                 }
 
@@ -153,24 +162,6 @@
                 align-items: center;
                 gap: 16px;
                 border-top: 1px solid var(--bg-secondary);
-
-                .profile-avatar {
-                    position: relative;
-                    cursor: pointer;
-
-                    .dropdown-menu {
-                        display: none;
-                        position: absolute;
-                        top: -5px;
-                        left: 0;
-
-                        padding: 15px 20px;
-                        width: 178px;
-                        color: var(--button-fc);
-                        background-color: var(--accent);
-                        border-radius: 5px;
-                    }
-                }
             }
         }
     }
@@ -207,11 +198,17 @@
         svg {
             position: relative;
             top: 2px;
+            cursor: pointer;
 
             path {
                 fill: var(--font-color);
                 stroke: var(--font-color);
                 stroke-width: 5px;
+            }
+
+            &:hover path {
+                fill: var(--accent);
+                stroke: var(--accent);
             }
         }
     }
