@@ -1,7 +1,9 @@
+import {AuthUtils} from "../../utils/auth-utils";
+
 export class Login {
     constructor() {
 
-        if(localStorage.getItem('accessToken')) {
+        if (AuthUtils.getAuthInfo(AuthUtils.accessTokenKey)) {
             return window.location.href = '#/main';
         }
 
@@ -56,14 +58,12 @@ export class Login {
                 return;
             }
 
-            localStorage.setItem('accessToken', result.tokens.accessToken);
-            localStorage.setItem('refreshToken', result.tokens.refreshToken);
-            localStorage.setItem('userInfo', JSON.stringify({
+            AuthUtils.setAuthInfo(result.tokens.accessToken, result.tokens.refreshToken, {
                     id: result.user.id,
                     name: result.user.name,
                     lastName: result.user.lastName
                 }
-            ));
+            )
 
             window.location.href = '#/main';
 

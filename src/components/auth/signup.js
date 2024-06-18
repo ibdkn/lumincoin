@@ -1,6 +1,8 @@
+import {AuthUtils} from "../../utils/auth-utils";
+
 export class Signup {
     constructor() {
-        if(localStorage.getItem('accessToken')) {
+        if(AuthUtils.getAuthInfo(AuthUtils.accessTokenKey)) {
             return window.location.href = '#/main';
         }
 
