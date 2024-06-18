@@ -49,14 +49,14 @@ button {
     fill: var(--font-color);
 }
 
-/* switch theme*/
+/* switch theme */
 .switch {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 12px;
+    right: 10px;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 40px; /* Изменено с 60px на 40px */
+    height: 20px; /* Изменено с 34px на 20px */
 }
 
 .switch input {
@@ -73,48 +73,40 @@ button {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: 0.4s;
     transition: 0.4s;
+    border-radius: 20px; /* Изменено с 34px на 20px для круглых краев */
 }
 
 .slider:before {
     position: absolute;
     content: "";
-    height: 40px;
-    width: 40px;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto 0;
-    -webkit-transition: 0.4s;
+    height: 16px; /* Изменено с 26px на 16px */
+    width: 16px; /* Изменено с 26px на 16px */
+    left: 2px; /* Уменьшено пропорционально новому размеру */
+    bottom: 2px; /* Уменьшено пропорционально новому размеру */
+    background-color: white;
     transition: 0.4s;
-    box-shadow: 0 0px 15px #2020203d;
-    background: white url('https://i.ibb.co/FxzBYR9/night.png');
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-input:checked + .slider {
-    background-color: #2196f3;
-}
-
-input:focus + .slider {
-    box-shadow: 0 0 1px #2196f3;
-}
-
-input:checked + .slider:before {
-    -webkit-transform: translateX(24px);
-    -ms-transform: translateX(24px);
-    transform: translateX(24px);
-    background: white url('https://i.ibb.co/7JfqXxB/sunny.png');
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
     border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+.switch input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+.switch input:checked + .slider:before {
+    transform: translateX(20px); /* Изменено с 26px на 20px для нового размера */
+}
+
+.slider {
+    background-color: #7A7D80;
+}
+
+.switch input:checked + .slider {
+    background-color: var(--accent);
+}
+
+.slider:before {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+

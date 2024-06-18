@@ -23,7 +23,19 @@
     }
 
     .form {
+        position: relative;
         max-width: 100%;
+
+        .error-message {
+            display: none;
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            font-size: 13px;
+            color: var(--danger-color);
+        }
 
         .form-group {
             position: relative;
@@ -81,7 +93,7 @@
             text-align: left;
             gap: 10px;
             cursor: pointer;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
 
             input, label {
                 cursor: pointer;
@@ -96,6 +108,7 @@
             font-size: 15px;
             color: var(--button-fc);
             background-color: var(--accent);
+            margin-top: 15px;
 
             &:disabled {
                 opacity: .5;

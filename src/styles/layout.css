@@ -20,7 +20,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid var(--bg-secondary);;
+            /*border-bottom: 1px solid var(--bg-secondary);;*/
 
             svg {
                 max-width: 120px;
@@ -176,12 +176,43 @@
     }
 
     .content {
-        padding: 100px 60px;
+        padding: 50px;
 
         .common-title {
             font-weight: 500;
             font-size: 40px;
             color: var(--font-color);
+        }
+    }
+}
+
+.layout .wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .header {
+        padding: 10px;
+        display: flex;
+        justify-content: flex-end;
+        border-bottom: 1px solid var(--bg-secondary);
+    }
+
+    .logout {
+        max-width: 30px;
+        padding-right: 70px;
+        cursor: pointer;
+
+        svg {
+            position: relative;
+            top: 2px;
+
+            path {
+                fill: var(--font-color);
+                stroke: var(--font-color);
+                stroke-width: 5px;
+            }
         }
     }
 }
@@ -198,26 +229,27 @@
             &.open {
                 left: 0;
                 transition: .5s ease-in-out;
+                z-index: 999999;
             }
 
 
             .burger {
                 position: absolute;
-                top: 10px;
-                right: -50px;
+                top: 2px;
+                right: -42px;
 
                 display: flex;
                 flex-direction: column;
                 justify-content: space-around;
-                width: 40px;
-                height: 40px;
+                width: 30px;
+                height: 30px;
                 cursor: pointer;
 
                 .burger-line {
                     position: absolute;
                     left: 0;
                     right: 0;
-                    height: 3px;
+                    height: 2px;
                     border-radius: 10px;
                     background-color: var(--font-color);
                     transition: all 0.3s ease;
@@ -254,7 +286,7 @@
         }
 
         .content {
-            padding: 80px 10px;
+            padding: 30px 10px;
 
             .common-title {
                 font-weight: 500;
@@ -263,10 +295,12 @@
             }
         }
 
-        &.open {
-            backdrop-filter: blur(5px);
-            background: rgba(0, 0, 0, 0.45);
-            transition: .5s ease-in-out;
-        }
+        /*&.open {*/
+        /*    position: relative;*/
+        /*    backdrop-filter: blur(5px);*/
+        /*    background: rgba(0, 0, 0, 0.45);*/
+        /*    transition: .5s ease-in-out;*/
+        /*    z-index: 999;*/
+        /*}*/
     }
 }
