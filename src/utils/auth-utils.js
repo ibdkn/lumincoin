@@ -10,7 +10,6 @@ export class AuthUtils {
     }
 
     static removeAuthInfo() {
-        console.log(123)
         localStorage.removeItem(this.accessTokenKey);
         localStorage.removeItem(this.refreshTokenKey);
         localStorage.removeItem(this.userInfoKey);

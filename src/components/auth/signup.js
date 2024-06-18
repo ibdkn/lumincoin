@@ -1,4 +1,5 @@
 import {AuthUtils} from "../../utils/auth-utils";
+import {HttpUtils} from "../../utils/http-utils";
 
 export class Signup {
     constructor() {
@@ -63,27 +64,19 @@ export class Signup {
 
         if (this.validateForm()) {
 
-            const response = await fetch('http://localhost:3000/api/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                    lastName: lastName,
-                    email: this.emailElement.value,
-                    password: this.passwordElement.value,
-                    passwordRepeat: this.passwordRepeatElement.value
-                })
-            });
+            const result = await HttpUtils.request('/signup', 'POST', {
+                name: name,
+                lastName: lastName,
+                email: this.emailElement.value,
+                password: this.passwordElement.value,
+                passwordRepeat: this.passwordRepeatElement.value
+            })
 
-            const result = await response.json();
-
-            if (result.error || !result.user.id || !result.user.email || !result.user.name || !result.user.lastName) {
+            if (result.error || !result.response || (result.response && (!result.response.user.id || !result.response.user.email || !result.response.user.name || !result.response.user.lastName))) {
                 this.errorMessageElement.style.display = 'block';
                 return;
             }
+
             window.location.href = '#/login';
 
             console.log(result);
