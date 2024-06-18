@@ -4,6 +4,7 @@ import {Signup} from "./components/auth/signup";
 import {Budget} from "./components/budget/budget";
 import {Income} from "./components/income/income";
 import {Expenses} from "./components/expenses/expenses";
+import {Logout} from "./components/auth/logout";
 
 export class Router {
 
@@ -25,7 +26,7 @@ export class Router {
             },
             {
                 route: '#/login',
-                title: 'Вход в систему',
+                title: 'Авторизация',
                 template: '/templates/pages/auth/login.html',
                 styles: '/styles/form.css',
                 load: () => {
@@ -39,6 +40,12 @@ export class Router {
                 styles: '/styles/form.css',
                 load: () => {
                     new Signup();
+                }
+            },
+            {
+                route: '#/logout',
+                load: () => {
+                    new Logout();
                 }
             },
             {
@@ -122,6 +129,7 @@ export class Router {
             '#/income': document.querySelector('#income'),
             '#/expenses': document.querySelector('#expenses'),
         }
+
         const navContainer = document.getElementById("main-nav");
         const btnNavContainer = navContainer.querySelectorAll(".navigation-item");
 

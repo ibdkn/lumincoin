@@ -1,4 +1,4 @@
-import {Router} from "./router";
+import { Router } from "./router";
 
 class App {
     constructor() {
@@ -14,7 +14,6 @@ class App {
     handleRouteChanging() {
         this.router.openRoute();
     }
-
 }
 
 (new App());
