@@ -173,6 +173,7 @@
             font-weight: 500;
             font-size: 40px;
             color: var(--font-color);
+            margin-bottom: 40px;
         }
     }
 }
@@ -287,8 +288,9 @@
 
             .common-title {
                 font-weight: 500;
-                font-size: 40px;
+                font-size: 30px;
                 color: var(--font-color);
+                margin-bottom: 20px;
             }
         }
 

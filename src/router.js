@@ -63,7 +63,7 @@ export class Router {
                 title: 'Доходы',
                 template: '/templates/pages/income/income.html',
                 useLayout: '/templates/layout.html',
-                styles: '/styles/income.css',
+                styles: '/styles/cards.css',
                 load: () => {
                     new Income();
                 }
@@ -73,7 +73,7 @@ export class Router {
                 title: 'Расходы',
                 template: '/templates/pages/expenses/expenses.html',
                 useLayout: '/templates/layout.html',
-                styles: '/styles/expenses.css',
+                styles: '/styles/cards.css',
                 load: () => {
                     new Expenses();
                 }
