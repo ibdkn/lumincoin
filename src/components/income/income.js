@@ -42,7 +42,7 @@ export class Income {
                 cardTitleElement.innerText = income.title;
 
                 const cardAnchorButtonElement = document.createElement('a');
-                cardAnchorButtonElement.setAttribute('href', '#/income/edit-income-category?id=' + income.id);
+                cardAnchorButtonElement.setAttribute('href', '#/income/update-income-category?id=' + income.id);
                 cardAnchorButtonElement.className = 'button button-accent';
                 cardAnchorButtonElement.innerText = 'Редактировать';
 

@@ -70,7 +70,7 @@ button {
     &.button-accent {
         background-color: var(--accent);
 
-        &:hover {
+        &:hover:not(:disabled) {
             background-color: var(--accent-hover);
             transition: .2s ease-in-out;
         }
@@ -79,7 +79,7 @@ button {
     &.button-danger {
         background-color: var(--danger-color);
 
-        &:hover {
+        &:hover:not(:disabled) {
             background-color: var(--danger-hover);
             transition: .2s ease-in-out;
         }
@@ -88,7 +88,7 @@ button {
     &.button-success {
         background-color: var(--success-color);
 
-        &:hover {
+        &:hover:not(:disabled) {
             background-color: var(--success-hover);
             transition: .2s ease-in-out;
         }

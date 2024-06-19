@@ -5,7 +5,7 @@ import {Budget} from "./components/budget/budget";
 import {Income} from "./components/income/income";
 import {Expenses} from "./components/expenses/expenses";
 import {Logout} from "./components/auth/logout";
-import {EditIncomeCategory} from "./components/income/edit-income-category";
+import {UpdateIncomeCategory} from "./components/income/update-income-category";
 import {CreateIncomeCategory} from "./components/income/create-income-category";
 
 export class Router {
@@ -81,13 +81,13 @@ export class Router {
                 }
             },
             {
-                route: '#/income/edit-income-category',
+                route: '#/income/update-income-category',
                 title: 'Редактирование категории доходов',
-                template: '/templates/pages/income/edit-income-category.html',
+                template: '/templates/pages/income/update-income-category.html',
                 useLayout: '/templates/layout.html',
                 styles: '/styles/cards.css',
                 load: () => {
-                    new EditIncomeCategory();
+                    new UpdateIncomeCategory();
                 }
             },
             {
