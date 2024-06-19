@@ -5,6 +5,8 @@ import {Budget} from "./components/budget/budget";
 import {Income} from "./components/income/income";
 import {Expenses} from "./components/expenses/expenses";
 import {Logout} from "./components/auth/logout";
+import {EditIncomeCategory} from "./components/income/edit-income-category";
+import {CreateIncomeCategory} from "./components/income/create-income-category";
 
 export class Router {
 
@@ -66,6 +68,26 @@ export class Router {
                 styles: '/styles/cards.css',
                 load: () => {
                     new Income();
+                }
+            },
+            {
+                route: '#/income/create-income-category',
+                title: 'Создание категории доходов',
+                template: '/templates/pages/income/create-income-category.html',
+                useLayout: '/templates/layout.html',
+                styles: '/styles/cards.css',
+                load: () => {
+                    new CreateIncomeCategory();
+                }
+            },
+            {
+                route: '#/income/edit-income-category',
+                title: 'Редактирование категории доходов',
+                template: '/templates/pages/income/edit-income-category.html',
+                useLayout: '/templates/layout.html',
+                styles: '/styles/cards.css',
+                load: () => {
+                    new EditIncomeCategory();
                 }
             },
             {
@@ -133,10 +155,23 @@ export class Router {
         const navContainer = document.getElementById("main-nav");
         const btnNavContainer = navContainer.querySelectorAll(".navigation-item");
 
+        // Удаляем класс active со всех пунктов меню
         btnNavContainer.forEach((item) => item.classList.remove('active'));
 
-        if(ROUTES_NAMES[urlRoute]) {
-            ROUTES_NAMES[urlRoute].classList.add('active');
+        // Функция для поиска соответствующего элемента меню
+        const findActiveRoute = (route) => {
+            for (let key in ROUTES_NAMES) {
+                if (route.startsWith(key)) {
+                    return key;
+                }
+            }
+            return null;
+        };
+
+        // Найти и установить класс active для основного или соответствующего подстраницы маршрута
+        const activeRouteKey = findActiveRoute(urlRoute);
+        if (activeRouteKey && ROUTES_NAMES[activeRouteKey]) {
+            ROUTES_NAMES[activeRouteKey].classList.add('active');
         }
 
         // burger menu
