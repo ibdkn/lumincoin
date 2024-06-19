@@ -38,6 +38,8 @@
 }
 
 .create-common-form {
+    position: relative;
+
     .form-control {
         padding: 7px 16px;
         width: 397px;
@@ -62,6 +64,18 @@
         &:focus {
             outline: 1px solid rgba(11, 140, 233, 0.5);
         }
+    }
+
+    .error {
+        display: none;
+        position: absolute;
+        top: -5px;
+        left: 5px;
+
+        padding: 0 5px;
+        font-size: 10px;
+        color: var(--danger-color);
+        background-color: var(--bg-primary);
     }
 }
 

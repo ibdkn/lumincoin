@@ -94,6 +94,11 @@ button {
         }
     }
 
+    &:disabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+
     & + & {
         margin-left: 10px;
     }
