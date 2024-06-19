@@ -44,6 +44,7 @@ export class AuthUtils {
     }
 
     static async updateRefreshToken() {
+        debugger
         let result = false;
         const refreshToken = this.getAuthInfo(this.refreshTokenKey);
 
