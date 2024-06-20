@@ -29,12 +29,17 @@
         .error-message {
             display: none;
             position: absolute;
-            top: -16px;
+            bottom: -70px;
             left: 50%;
             transform: translateX(-50%);
 
+            padding: 10px;
+            width: 300px;
             font-size: 13px;
-            color: var(--danger-color);
+            color: #fff;
+            background-color: #bb2e3b;
+            border-radius: 5px;
+            z-index: 9999;
         }
 
         .form-group {

@@ -8,42 +8,78 @@ export class Login {
             return window.location.href = '#/main';
         }
 
-        this.emailElement = document.getElementById('email');
-        this.passwordElement = document.getElementById('password');
-        this.rememberMeElement = document.getElementById('remember-me');
-        this.errorMessageElement = document.getElementById('common-error');
+        const that = this;
+        this.fields = [
+            {
+                name: 'email',
+                id: 'email',
+                element: null,
+                regex: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                valid: false,
+            },
+            {
+                name: 'password',
+                id: 'password',
+                element: null,
+                regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+                valid: false,
+            },
+            {
+                name: 'remember-me',
+                id: 'remember-me',
+                element: null,
+                valid: true,
+            },
+        ];
 
-        document.getElementById('process-button').addEventListener('click', this.login.bind(this));
+        this.fields.forEach(item => {
+            item.element = document.getElementById(item.id);
+            item.element.oninput = function () {
+                that.validateField.call(that, item, this);
+            }
+        });
+
+        this.errorMessageElement = document.getElementById('common-error');
+        this.processElement = document.getElementById('process-button');
+        this.processElement.onclick = function () {
+            that.login();
+        }
+    }
+
+    validateField(field, element) {
+        if (!element.value || !element.value.match(field.regex)) {
+            element.classList.add('is-invalid');
+            field.valid = false;
+        } else {
+            element.classList.remove('is-invalid');
+            field.valid = true;
+        }
+
+        this.validateForm();
     }
 
     validateForm() {
-        let isValid = true;
+        const isValid = this.fields.every(item => item.valid);
 
-        if (this.emailElement.value && this.emailElement.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-            this.emailElement.classList.remove('is-invalid');
+        if (isValid) {
+            this.processElement.removeAttribute('disabled');
         } else {
-            this.emailElement.classList.add('is-invalid');
-            isValid = false;
+            this.processElement.setAttribute('disabled', 'disabled');
         }
-        if (this.passwordElement.value) {
-            this.passwordElement.classList.remove('is-invalid');
-        } else {
-            this.passwordElement.classList.add('is-invalid');
-            isValid = false;
-        }
-
         return isValid;
     }
 
     async login() {
-        this.errorMessageElement.style.display = 'none';
-
         if (this.validateForm()) {
 
+            const email = this.fields.find(item => item.name === 'email').element.value;
+            const password = this.fields.find(item => item.name === 'password').element.value;
+            const rememberMe = this.fields.find(item => item.name === 'remember-me').element.checked;
+
             const result = await HttpUtils.request('/login', 'POST', false, {
-                email: this.emailElement.value,
-                password: this.passwordElement.value,
-                rememberMe: this.rememberMeElement.checked
+                email,
+                password,
+                rememberMe
             })
 
             if (result.error || !result.response || (result.response && (
@@ -54,6 +90,9 @@ export class Login {
                 )
             )) {
                 this.errorMessageElement.style.display = 'block';
+                setTimeout(()=> {
+                    this.errorMessageElement.style.display = 'none';
+                }, 3000)
                 return;
             }
 
