@@ -14,44 +14,85 @@ export class Signup {
         this.errorMessageElement = document.getElementById('common-error');
 
         document.getElementById('process-button').addEventListener('click', this.signup.bind(this));
+
+        const that = this;
+        this.fields = [
+            {
+                name: 'full-name',
+                id: 'full-name',
+                element: null,
+                regex: /([А-ЯЁ][а-яё]+[\-\s]?){3,}/,
+                valid: false,
+            },
+            {
+                name: 'email',
+                id: 'email',
+                element: null,
+                regex: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                valid: false,
+            },
+            {
+                name: 'password',
+                id: 'password',
+                element: null,
+                regex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+                valid: false,
+            },
+            {
+                name: 'password-repeat',
+                id: 'password-repeat',
+                element: null,
+                valid: false,
+            },
+        ];
+
+        this.fields.forEach(item => {
+            item.element = document.getElementById(item.id);
+            item.element.oninput = function () {
+                that.validateField.call(that, item, this);
+            }
+        });
+
+        this.processElement = document.getElementById('process-button');
+        this.processElement.onclick = function () {
+            that.signup();
+        }
+    }
+
+    validateField(field, element) {
+        const password = document.getElementById('password')
+        const repeatPassword = document.getElementById('password-repeat');
+
+        if (!element.value || !element.value.match(field.regex)) {
+            element.classList.add('is-invalid');
+            element.nextElementSibling.style.display = 'block';
+            field.valid = false;
+        } else {
+            element.classList.remove('is-invalid');
+            element.nextElementSibling.style.display = 'none';
+            field.valid = true;
+        }
+        if (password.value !== repeatPassword.value) {
+            repeatPassword.classList.add('is-invalid');
+            repeatPassword.nextElementSibling.style.display = 'block';
+            repeatPassword.valid = false;
+        } else if (password.value === repeatPassword.value) {
+            repeatPassword.classList.remove('is-invalid');
+            repeatPassword.nextElementSibling.style.display = 'none';
+            repeatPassword.valid = true;
+        }
+
+        this.validateForm();
     }
 
     validateForm() {
-        let isValid = true;
+        const isValid = this.fields.every(item => item.valid);
 
-        if (this.fullNameElement.value && this.fullNameElement.value.match(/([А-ЯЁ][а-яё]+[\-\s]?){3,}/)) {
-            this.fullNameElement.classList.remove('is-invalid');
-            this.fullNameElement.nextElementSibling.style.display = 'none';
+        if (isValid) {
+            this.processElement.removeAttribute('disabled');
         } else {
-            this.fullNameElement.classList.add('is-invalid');
-            this.fullNameElement.nextElementSibling.style.display = 'block';
-            isValid = false;
+            this.processElement.setAttribute('disabled', 'disabled');
         }
-        if (this.emailElement.value && this.emailElement.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-            this.emailElement.classList.remove('is-invalid');
-            this.emailElement.nextElementSibling.style.display = 'none';
-        } else {
-            this.emailElement.classList.add('is-invalid');
-            this.emailElement.nextElementSibling.style.display = 'block';
-            isValid = false;
-        }
-        if (this.passwordElement.value && this.passwordElement.value.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)) {
-            this.passwordElement.classList.remove('is-invalid');
-            this.passwordElement.nextElementSibling.style.display = 'none';
-        } else {
-            this.passwordElement.classList.add('is-invalid');
-            this.passwordElement.nextElementSibling.style.display = 'block';
-            isValid = false;
-        }
-        if(this.passwordRepeatElement.value && this.passwordElement.value === this.passwordRepeatElement.value) {
-            this.passwordRepeatElement.classList.remove('is-invalid');
-            this.passwordRepeatElement.nextElementSibling.style.display = 'none';
-        } else {
-            this.passwordRepeatElement.classList.add('is-invalid');
-            this.passwordRepeatElement.nextElementSibling.style.display = 'block';
-            isValid = false;
-        }
-
         return isValid;
     }
 
@@ -70,15 +111,41 @@ export class Signup {
                 email: this.emailElement.value,
                 password: this.passwordElement.value,
                 passwordRepeat: this.passwordRepeatElement.value
-            })
+            });
 
-            if (result.error || !result.response || (result.response && (!result.response.user.id || !result.response.user.email || !result.response.user.name || !result.response.user.lastName))) {
+            //todo
+            // let errorMessage = null;
+            // switch (result.response.message) {
+            //     case 'User with given email already exist': {
+            //         errorMessage = 'Введенный пароль уже зарегестрирован в системе';
+            //     }
+            // }
+            // // 12345678Qq
+            // console.log(result.response.message);
+            // console.log(result.message);
+
+            if (result.error || !result.response || (result.response && (!result.response.user.id
+                || !result.response.user.email || !result.response.user.name || !result.response.user.lastName))) {
+
+                this.errorMessageElement.innerText = 'Введенный пароль уже зарегестрирован в системе';
+                this.errorMessageElement.style.backgroundColor = '#DC3545';
                 this.errorMessageElement.style.display = 'block';
+                setTimeout(()=> {
+                    this.errorMessageElement.style.display = 'none';
+                    this.errorMessageElement.innerText = '';
+                }, 3000);
                 return;
             }
 
-            window.location.href = '#/login';
+            this.errorMessageElement.innerText = 'Вы успешно зарегестрировались в системе!';
+            this.errorMessageElement.style.backgroundColor = '#198754';
+            this.errorMessageElement.style.display = 'block';
+            setTimeout(()=> {
+                this.errorMessageElement.style.display = 'none';
+                this.errorMessageElement.innerText = '';
 
+                window.location.href = '#/login';
+            }, 3000);
             console.log(result);
         } else {
 
