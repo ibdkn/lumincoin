@@ -7,6 +7,8 @@ import {Expenses} from "./components/expenses/expenses";
 import {Logout} from "./components/auth/logout";
 import {UpdateIncomeCategory} from "./components/income/update-income-category";
 import {CreateIncomeCategory} from "./components/income/create-income-category";
+import {UpdateExpenseCategory} from "./components/expenses/update-expense-category";
+import {CreateExpenseCategory} from "./components/expenses/create-expense-category";
 
 export class Router {
 
@@ -98,6 +100,26 @@ export class Router {
                 styles: '/styles/cards.css',
                 load: () => {
                     new Expenses();
+                }
+            },
+            {
+                route: '#/expenses/create-expense-category',
+                title: 'Создание категории расходов',
+                template: '/templates/pages/expenses/create-expense-category.html',
+                useLayout: '/templates/layout.html',
+                styles: '/styles/cards.css',
+                load: () => {
+                    new CreateExpenseCategory();
+                }
+            },
+            {
+                route: '#/expenses/update-expense-category',
+                title: 'Редактирование категории расходов',
+                template: '/templates/pages/expenses/update-expense-category.html',
+                useLayout: '/templates/layout.html',
+                styles: '/styles/cards.css',
+                load: () => {
+                    new UpdateExpenseCategory();
                 }
             },
             {
