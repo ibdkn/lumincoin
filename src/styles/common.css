@@ -60,6 +60,7 @@ button {
 
 .button {
     padding: 11px 16px;
+    display: inline-block;
     font-weight: 500;
     font-size: 14px;
     text-align: center;

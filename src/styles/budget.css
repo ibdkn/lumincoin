@@ -1,0 +1,181 @@
+.budget {
+
+    .budget-actions {
+        margin-bottom: 40px;
+    }
+
+    .budget-periods {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+
+        .budget-period {
+            margin: 0;
+            padding: 9px 24px;
+            color: var(--placeholder-color);
+            background-color: transparent;
+            border: 1px solid var(--placeholder-color);
+
+            &.active {
+                color: var(--button-fc);
+                background-color: var(--placeholder-color);
+            }
+
+            &:hover {
+                color: var(--button-fc);
+                background-color: var(--placeholder-color);
+            }
+        }
+
+        .budget-interval {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .input-element {
+                position: relative;
+                z-index: 1;
+
+                input[type='date'] {
+                    padding: 8px;
+                    max-width: 130px;
+                    font-weight: 500;
+                    font-size: 14px;
+                    letter-spacing: 0.03em;
+                    color: var(--font-color);
+                    background-color: transparent;
+                    border-radius: 5px;
+                    border: 1px solid var(--bg-secondary);
+
+                    &:focus {
+                        outline: 1px solid rgba(11, 140, 233, 0.5);
+                    }
+                }
+
+                input[type='date']::-webkit-calendar-picker-indicator {
+                    background: transparent;
+                }
+
+                input[type='date']::-webkit-calendar-picker-indicator {
+                    filter: invert(100%);
+                }
+
+                &::before {
+                    content: '📅';
+                    position: absolute;
+                    top: 8px;
+                    right: 7px;
+                    z-index: -1;
+                }
+            }
+
+            span {
+                font-weight: 500;
+                font-size: 14px;
+                letter-spacing: 0.03em;
+                color: var(--font-color);
+            }
+        }
+    }
+
+    .budget-records {
+        overflow-x: auto;
+
+        .table {
+            width: 100%;
+            border-spacing: 0;
+        }
+
+        .table-head {
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 0.08em;
+            color: var(--font-color);
+
+            th {
+                padding: 16px 0;
+                border-bottom: 1px solid var(--bg-secondary);
+            }
+        }
+
+        .table-body {
+            font-weight: 400;
+            font-size: 16px;
+            color: var(--font-color);
+            text-align: center;
+
+            td {
+                max-width: 100%;
+                padding: 11px 5px;
+                border-bottom: 1px solid var(--bg-secondary);
+            }
+
+            .index {
+                min-width: 120px;
+            }
+
+            .category-type {
+                min-width: 80px;
+
+                &.income {
+                    color: var(--success-color);
+                }
+
+                &.expense {
+                    color: var(--danger-color);
+                }
+            }
+
+            .category {
+                min-width: 150px;
+            }
+
+            .amount {
+                min-width: 100px;
+            }
+
+            .date {
+                min-width: 150px;
+            }
+
+            .comment {
+                min-width: 150px;
+            }
+        }
+
+        .table-actions {
+            min-width: 100px;
+            max-width: 100px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+
+            .icon-btn {
+                cursor: pointer;
+
+                svg path {
+                    fill: var(--font-color);
+                    transition: .3s ease-in-out;
+                }
+
+                &:hover {
+                    svg path {
+                        fill: var(--accent);
+                        transition: .3s ease-in-out;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .budget {
+        .budget-periods {
+            gap: 10px;
+        }
+    }
+}
