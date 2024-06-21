@@ -1,0 +1,43 @@
+.common-form {
+    .form-control {
+        padding: 7px 16px;
+        width: 397px;
+        max-width: 100%;
+        font-size: 15px;
+        color: var(--font-color);
+        background-color: transparent;
+        border: 1px solid var(--bg-secondary);
+        border-radius: 4px;
+        margin-bottom: 10px;
+
+        &.is-invalid {
+            border: 1px solid var(--danger-color);
+        }
+
+        &::placeholder {
+            font-weight: 400;
+            font-size: 15px;
+            color: var(--placeholder-color);
+        }
+
+        &:focus {
+            outline: 1px solid rgba(11, 140, 233, 0.5);
+        }
+    }
+
+    .error {
+        display: none;
+        position: absolute;
+        top: -5px;
+        left: 5px;
+
+        padding: 0 5px;
+        font-size: 10px;
+        color: var(--danger-color);
+        background-color: var(--bg-primary);
+    }
+
+    .actions {
+        margin-top: 10px;
+    }
+}

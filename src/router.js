@@ -9,6 +9,7 @@ import {UpdateIncomeCategory} from "./components/income/update-income-category";
 import {CreateIncomeCategory} from "./components/income/create-income-category";
 import {UpdateExpenseCategory} from "./components/expenses/update-expense-category";
 import {CreateExpenseCategory} from "./components/expenses/create-expense-category";
+import {UpdateOperation} from "./components/budget/update-operation";
 
 export class Router {
 
@@ -60,6 +61,16 @@ export class Router {
                 styles: '/styles/budget.css',
                 load: () => {
                     new Budget();
+                }
+            },
+            {
+                route: '#/budget/update-operation',
+                title: 'Редактирование дохода/расхода',
+                template: '/templates/pages/budget/update-operation.html',
+                useLayout: '/templates/layout.html',
+                styles: '/styles/operation-form.css',
+                load: () => {
+                    new UpdateOperation();
                 }
             },
             {

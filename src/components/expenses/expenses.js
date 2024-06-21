@@ -7,7 +7,7 @@ export class Expenses {
     }
 
     async getExpenses() {
-        const result = await HttpUtils.request('/categories/expense');
+        const result = await HttpUtils.request('/categories/expense', 'GET', true);
 
         if (result.error || !result.response || (result.response && (result.response.error || result.response.length < 0))) {
             console.log('Error data');
@@ -78,7 +78,7 @@ export class Expenses {
     }
 
     async deleteExpenseCategory(categoryID) {
-        const result = await HttpUtils.request('/categories/expense/' + categoryID, 'DELETE');
+        const result = await HttpUtils.request('/categories/expense/' + categoryID, 'DELETE', true);
 
         if (result.error || !result.response || (result.response && (result.response.error || result.response.length < 0))) {
             console.log('Error data');

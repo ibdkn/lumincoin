@@ -1,5 +1,4 @@
 .budget {
-
     .budget-actions {
         margin-bottom: 40px;
     }
@@ -52,6 +51,10 @@
                     &:focus {
                         outline: 1px solid rgba(11, 140, 233, 0.5);
                     }
+
+                    &:disabled {
+                        opacity: .2;
+                    }
                 }
 
                 input[type='date']::-webkit-calendar-picker-indicator {
@@ -103,7 +106,7 @@
         .table-body {
             font-weight: 400;
             font-size: 16px;
-            color: var(--font-color);
+            color: var(--table-color);
             text-align: center;
 
             td {
@@ -169,6 +172,12 @@
             }
 
         }
+    }
+
+    .error-message {
+        display: none;
+        color: var(--placeholder-color);
+        text-align: center;
     }
 }
 

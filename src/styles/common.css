@@ -14,12 +14,14 @@
     --bg-primary: #FFFFFF;
     --bg-secondary: #CED4DA;
     --font-color: #052C65;
+    --table-color: #000000;
 }
 
 .theme-dark {
     --bg-primary: #2C2C2C;
     --bg-secondary: #7A7D80;
     --font-color: #E5E5E5;
+    --table-color: #E5E5E5;
 }
 
 * {
@@ -67,6 +69,7 @@ button {
     color: var(--button-fc);
     border-radius: 5px;
     transition: .2s ease-in-out;
+    cursor: pointer;
 
     &.button-accent {
         background-color: var(--accent);
