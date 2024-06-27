@@ -37,7 +37,7 @@ export class Budget {
             that.addActiveClass(event.target);
         }
 
-        that.getOperations('all').then();
+        that.getOperations().then();
     }
 
     addActiveClass(target) {
