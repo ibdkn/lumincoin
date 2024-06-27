@@ -189,3 +189,32 @@
         }
     }
 }
+
+.charts {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.charts-title {
+    font-weight: 500;
+    font-size: 28px;
+    text-align: center;
+    color: #290661;
+    margin-bottom: 20px;
+}
+.chartsExpense, .chartsIncome {
+    width: 521px;
+}
+.chartsIncome {
+    padding-right: 84px;
+    border-right: 1px solid #D9D9D9;
+}
+.chartsExpense {
+    padding-left: 84px;
+}
+
+.chartsIncome-help {
+    padding: 20px;
+    color: #6C757D;
+    text-align: center;
+}

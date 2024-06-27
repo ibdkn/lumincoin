@@ -12,7 +12,6 @@ import {CreateExpenseCategory} from "./components/expenses/create-expense-catego
 import {UpdateOperation} from "./components/budget/update-operation";
 import {CreateOperation} from "./components/budget/create-operation";
 import {AuthUtils} from "./utils/auth-utils";
-import {HttpUtils} from "./utils/http-utils";
 import {Balance} from "./components/balance/balance";
 
 export class Router {
@@ -28,7 +27,7 @@ export class Router {
                 title: 'Главная',
                 template: '/templates/pages/main.html',
                 useLayout: '/templates/layout.html',
-                styles: '/styles/main.css',
+                styles: '/styles/budget.css',
                 load: () => {
                     new Main();
                 }

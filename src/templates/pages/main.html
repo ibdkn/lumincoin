@@ -1,1 +1,38 @@
-main
+<div class="content">
+    <h2 class="common-title">Главная</h2>
+
+    <div class="budget" id="budget">
+        <div class="budget-periods">
+            <div class="nav-buttons" id="nav-buttons">
+                <button class="button budget-period active" id="all">Все</button>
+                <button class="button budget-period" id="today">Сегодня</button>
+                <button class="button budget-period" id="week">Неделя</button>
+                <button class="button budget-period" id="month">Месяц</button>
+                <button class="button budget-period" id="year">Год</button>
+                <button class="button budget-period" id="interval">Интервал</button>
+            </div>
+            <div class="budget-interval">
+                <span>с</span>
+                <div class="input-element">
+                    <input type="date" id="interval-1" disabled>
+                </div>
+                <span>до</span>
+                <div class="input-element">
+                    <input type="date" id="interval-2" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="charts">
+            <div class="chartsIncome">
+                <h3 class="charts-title">Доходы</h3>
+                <div class="chartsIncome-help" id="income-help">Операции не найдены</div>
+                <canvas id="chartIncome"></canvas>
+            </div>
+            <div class="chartsExpense">
+                <h3 class="charts-title">Расходы</h3>
+                <div class="chartsIncome-help" id="expense-help">Операции не найдены</div>
+                <canvas id="chartExpense"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
