@@ -10,6 +10,7 @@ import {CreateIncomeCategory} from "./components/income/create-income-category";
 import {UpdateExpenseCategory} from "./components/expenses/update-expense-category";
 import {CreateExpenseCategory} from "./components/expenses/create-expense-category";
 import {UpdateOperation} from "./components/budget/update-operation";
+import {CreateOperation} from "./components/budget/create-operation";
 
 export class Router {
 
@@ -71,6 +72,16 @@ export class Router {
                 styles: '/styles/operation-form.css',
                 load: () => {
                     new UpdateOperation();
+                }
+            },
+            {
+                route: '#/budget/create-operation',
+                title: 'Создание дохода/расхода',
+                template: '/templates/pages/budget/create-operation.html',
+                useLayout: '/templates/layout.html',
+                styles: '/styles/operation-form.css',
+                load: () => {
+                    new CreateOperation();
                 }
             },
             {
