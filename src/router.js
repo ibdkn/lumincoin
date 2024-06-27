@@ -11,6 +11,7 @@ import {UpdateExpenseCategory} from "./components/expenses/update-expense-catego
 import {CreateExpenseCategory} from "./components/expenses/create-expense-category";
 import {UpdateOperation} from "./components/budget/update-operation";
 import {CreateOperation} from "./components/budget/create-operation";
+import {AuthUtils} from "./utils/auth-utils";
 
 export class Router {
 
@@ -173,6 +174,11 @@ export class Router {
                     // navigation
                     this.setupNavigationHandlers(urlRoute);
 
+                    const userInfo = JSON.parse(AuthUtils.getAuthInfo(AuthUtils.userInfoKey));
+                    const userInfoElement = document.getElementById('user-info');
+                    if (userInfoElement) {
+                        userInfoElement.innerText = `${userInfo.name} ${userInfo.lastName}`;
+                    }
                 }
                 contentBlock.innerHTML = await fetch(newRoute.template).then(response => response.text());
                 this.stylesElement.setAttribute('href', newRoute.styles);
@@ -188,6 +194,7 @@ export class Router {
     }
 
     setupNavigationHandlers(urlRoute) {
+
         // active menu
         const ROUTES_NAMES = {
             '#/budget': document.querySelector('#budget'),
