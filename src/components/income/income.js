@@ -1,5 +1,6 @@
 import {HttpUtils} from "../../utils/http-utils";
 import {Budget} from "../budget/budget";
+import {Balance} from "../balance/balance";
 
 export class Income {
     constructor() {
@@ -83,7 +84,6 @@ export class Income {
             return;
         }
 
-        console.log('before', this.allOperations)
         this.allOperations = result.response;
     }
 
@@ -102,6 +102,9 @@ export class Income {
                 this.deleteRelativeOperations(operation.id);
             }
         })
+
+        const balanceInstance = new Balance();
+        await balanceInstance.getBalance();
         this.showIncomeCategories();
     }
 
@@ -113,8 +116,8 @@ export class Income {
                 console.log('Error data');
                 return;
             }
-        }
 
-        console.log('after', this.allOperations)
+            Balance.updateBalance;
+        }
     }
 }

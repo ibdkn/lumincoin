@@ -1,4 +1,5 @@
 import {HttpUtils} from "../../utils/http-utils";
+import {Balance} from "../balance/balance";
 
 export class Budget {
     constructor() {
@@ -53,7 +54,8 @@ export class Budget {
             return;
         }
 
-        console.log(result.response)
+        const balanceInstance = new Balance();
+        await balanceInstance.getBalance();
         this.showRecords(result.response)
     }
 
@@ -181,6 +183,7 @@ export class Budget {
                 return;
             }
 
+            Balance.updateBalance;
             this.getOperations();
         }
     }

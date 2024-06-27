@@ -1,5 +1,6 @@
 import { UrlManager } from "../../utils/url-manager";
 import { HttpUtils } from "../../utils/http-utils";
+import {Balance} from "../balance/balance";
 
 export class UpdateOperation {
     constructor() {
@@ -138,6 +139,7 @@ export class UpdateOperation {
                 console.log('Ошибка редактирования категории');
                 return;
             }
+            Balance.updateBalance;
             location.href = '#/budget';
         }
     }

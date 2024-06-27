@@ -12,6 +12,8 @@ import {CreateExpenseCategory} from "./components/expenses/create-expense-catego
 import {UpdateOperation} from "./components/budget/update-operation";
 import {CreateOperation} from "./components/budget/create-operation";
 import {AuthUtils} from "./utils/auth-utils";
+import {HttpUtils} from "./utils/http-utils";
+import {Balance} from "./components/balance/balance";
 
 export class Router {
 
@@ -179,6 +181,9 @@ export class Router {
                     if (userInfoElement) {
                         userInfoElement.innerText = `${userInfo.name} ${userInfo.lastName}`;
                     }
+
+                    const balanceInstance = new Balance();
+                    await balanceInstance.getBalance();
                 }
                 contentBlock.innerHTML = await fetch(newRoute.template).then(response => response.text());
                 this.stylesElement.setAttribute('href', newRoute.styles);
@@ -189,7 +194,7 @@ export class Router {
 
         } else {
             console.log('No route found');
-            window.location.href = '#/404';
+            window.location.href = '#/login';
         }
     }
 
