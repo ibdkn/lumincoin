@@ -3,7 +3,9 @@ import {HttpUtils} from "../../utils/http-utils";
 export class Expenses {
     constructor() {
         this.expenses = [];
+        this.allOperations = [];
         this.getExpenses().then();
+        this.getAllOperations().then();
     }
 
     async getExpenses() {
@@ -63,7 +65,7 @@ export class Expenses {
                     document.getElementById('popup').style.display = 'block';
 
                     deleteCategoryButton.onclick = function () {
-                        that.deleteExpenseCategory(expense.id);
+                        that.deleteExpenseCategory(expense.id, expense.title);
                         document.getElementById('popup').style.display = 'none';
                     }
 
@@ -77,16 +79,47 @@ export class Expenses {
         cardsElement.appendChild(newCategoryElement);
     }
 
-    async deleteExpenseCategory(categoryID) {
-        const result = await HttpUtils.request('/categories/expense/' + categoryID, 'DELETE', true);
+    async getAllOperations() {
+        const result = await HttpUtils.request('/operations/?period=all', 'GET', true);
 
         if (result.error || !result.response || (result.response && (result.response.error || result.response.length < 0))) {
             console.log('Error data');
             return;
         }
 
-        this.expenses = this.expenses.filter(expense => expense.id !== categoryID);
+        console.log('before', this.allOperations)
+        this.allOperations = result.response;
+    }
+
+    async deleteExpenseCategory(id, title) {
+        const result = await HttpUtils.request('/categories/expense/' + id, 'DELETE', true);
+
+        if (result.error || !result.response || (result.response && (result.response.error || result.response.length < 0))) {
+            console.log('Error data');
+            return;
+        }
+
+        this.expenses = this.expenses.filter(expense => expense.id !== id);
+
+        this.allOperations.forEach(operation => {
+            if(operation.category === title) {
+                this.deleteRelativeOperations(operation.id);
+            }
+        })
 
         this.showExpensesCategories();
+    }
+
+    async deleteRelativeOperations(id) {
+        if(id) {
+            const result = await HttpUtils.request('/operations/' + id, 'DELETE', true);
+
+            if (result.error || !result.response || (result.response && (result.response.error || result.response.length < 0))) {
+                console.log('Error data');
+                return;
+            }
+        }
+
+        console.log('after', this.allOperations)
     }
 }

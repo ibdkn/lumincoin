@@ -144,7 +144,7 @@ export class Budget {
                     document.getElementById('popup').style.display = 'block';
 
                     deleteCategoryButton.onclick = function () {
-                        that.deleteCurrentCategory(operation.id);
+                        that.deleteCurrentOperation(operation.id);
                         document.getElementById('popup').style.display = 'none';
                     }
 
@@ -172,7 +172,7 @@ export class Budget {
         }
     }
 
-    async deleteCurrentCategory(id) {
+     async deleteCurrentOperation(id) {
         if(id) {
             const result = await HttpUtils.request('/operations/' + id, 'DELETE', true);
 

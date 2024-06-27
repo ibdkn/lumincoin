@@ -1,9 +1,12 @@
 import {HttpUtils} from "../../utils/http-utils";
+import {Budget} from "../budget/budget";
 
 export class Income {
     constructor() {
         this.income = [];
+        this.allOperations = [];
         this.getIncome().then();
+        this.getAllOperations().then();
     }
 
     async getIncome() {
@@ -62,7 +65,7 @@ export class Income {
                     document.getElementById('popup').style.display = 'block';
 
                     deleteCategoryButton.onclick = function () {
-                        that.deleteIncomeCategory(income.id);
+                        that.deleteIncomeCategory(income.id, income.title);
                         document.getElementById('popup').style.display = 'none';
                     }
                 })
@@ -72,17 +75,46 @@ export class Income {
         cardsElement.appendChild(newCategoryElement);
     }
 
-    async deleteIncomeCategory(categoryID) {
-        const result = await HttpUtils.request('/categories/income/' + categoryID, 'DELETE', true);
+    async getAllOperations() {
+        const result = await HttpUtils.request('/operations/?period=all', 'GET', true);
 
         if (result.error || !result.response || (result.response && (result.response.error || result.response.length < 0))) {
             console.log('Error data');
             return;
         }
 
-        this.income = this.income.filter(income => income.id !== categoryID);
+        console.log('before', this.allOperations)
+        this.allOperations = result.response;
+    }
 
-        // location.href = '#/income';
+    async deleteIncomeCategory(id, title) {
+        const result = await HttpUtils.request('/categories/income/' + id, 'DELETE', true);
+
+        if (result.error || !result.response || (result.response && (result.response.error || result.response.length < 0))) {
+            console.log('Error data');
+            return;
+        }
+
+        this.income = this.income.filter(income => income.id !== id);
+
+        this.allOperations.forEach(operation => {
+            if(operation.category === title) {
+                this.deleteRelativeOperations(operation.id);
+            }
+        })
         this.showIncomeCategories();
+    }
+
+    async deleteRelativeOperations(id) {
+        if(id) {
+            const result = await HttpUtils.request('/operations/' + id, 'DELETE', true);
+
+            if (result.error || !result.response || (result.response && (result.response.error || result.response.length < 0))) {
+                console.log('Error data');
+                return;
+            }
+        }
+
+        console.log('after', this.allOperations)
     }
 }
