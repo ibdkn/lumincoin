@@ -10,6 +10,12 @@
         flex-wrap: wrap;
         margin-bottom: 40px;
 
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
         .budget-period {
             margin: 0;
             padding: 9px 24px;
@@ -194,6 +200,7 @@
     display: flex;
     justify-content: center;
     flex-shrink: 0;
+    flex-wrap: wrap;
 }
 .charts-title {
     font-weight: 500;
@@ -217,4 +224,19 @@
     padding: 20px;
     color: #6C757D;
     text-align: center;
+}
+
+@media screen and (max-width: 1360px) {
+    .charts {
+        gap: 20px;
+    }
+    .chartsIncome {
+        max-width: 350px;
+        padding-right: 0;
+        border-right: none;
+    }
+    .chartsExpense {
+        max-width: 350px;
+        padding-left: 0;
+    }
 }
