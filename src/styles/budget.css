@@ -206,7 +206,7 @@
     font-weight: 500;
     font-size: 28px;
     text-align: center;
-    color: #290661;
+    color: var(--font-color);
     margin-bottom: 20px;
 }
 .chartsExpense, .chartsIncome {

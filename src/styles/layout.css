@@ -9,6 +9,7 @@
         justify-content: space-between;
         background-color: var(--bg-primary);
         border-right: 1px solid var(--bg-secondary);
+        z-index: 999999;
 
         .burger {
             display: none;
@@ -227,7 +228,6 @@
             &.open {
                 left: 0;
                 transition: .5s ease-in-out;
-                z-index: 999999;
             }
 
 
@@ -303,3 +303,20 @@
         /*}*/
     }
 }
+
+.blur {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background-color: var(--blur);
+    backdrop-filter: blur(2px);
+
+    &.open {
+        display: block;
+    }
+}
+

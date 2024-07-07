@@ -15,6 +15,7 @@
     --bg-secondary: #CED4DA;
     --font-color: #052C65;
     --table-color: #000000;
+    --blur: rgba(255, 255, 255, 0.5);
 }
 
 .theme-dark {
@@ -22,6 +23,7 @@
     --bg-secondary: #7A7D80;
     --font-color: #E5E5E5;
     --table-color: #E5E5E5;
+    --blur: rgba(0, 0, 0, 0.5);
 }
 
 * {
