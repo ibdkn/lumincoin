@@ -31,9 +31,6 @@ export class CreateOperation {
             element.classList.add('is-invalid');
             element.nextElementSibling.style.display = 'block';
             isValid = false;
-        } else {
-            element.classList.remove('is-invalid');
-            element.nextElementSibling.style.display = 'none';
         }
 
         this.validateForm();
