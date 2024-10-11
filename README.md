@@ -2,8 +2,6 @@
 
 This is a Single Page Application (SPA) built using Native JavaScript without any frontend frameworks. It provides an intuitive interface for managing personal income and expenses.
 
-Link: https://ibdkn.github.io/macaroons/
-
 ## Technologies
 
 <div>
